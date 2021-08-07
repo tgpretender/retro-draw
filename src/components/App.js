@@ -17,6 +17,7 @@ import {
   buildCellList
 } from '../utils';
 
+
 /**
  * The App component represents our entire application. It contains all of the
  * top level components, and is responsible for helping its children communicate 
@@ -29,16 +30,18 @@ const App = () => {
    * - activeColor, setActiveColor initialized to COLORS[0]
    * - cellList, setCellList initialized to buildCellList()
    */
+  const [activeColor, setActiveColor] = useState(COLORS[0]);
+  const [cellList, setCellList] = useState(buildCellList());
 
   return <div className="app">
     {/* Header needs no props */}
     <Header />
     {/* Palette needs to be passed activeColor and setActiveColor */}
-    <Palette />
+    <Palette activeColor={activeColor} setActiveColor={setActiveColor} />
     {/* Grid needs to be passed activeColor, cellList, and setCellList */}
-    <Grid />
+    <Grid activeColor={activeColor} cellList={cellList} setCellList={setCellList}/>
     {/* ActionPanel needs to be passed activeColor, cellList, and setCellList */}
-    <ActionPanel />
+    <ActionPanel activeColor={activeColor} cellList={cellList} setCellList={setCellList}/>
   </div>
 }
 
